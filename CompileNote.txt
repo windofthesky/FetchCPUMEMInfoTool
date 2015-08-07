@@ -18,7 +18,7 @@ warning:step 2 and 3 should keep all the folder structure as the same way.
 
 To compile Fetchinfo.c we needs mysql and m_linux,utils,so it must be noted when in the compile command.
 
-
+To store the cpu & memory information into MySQL datebase,we need a table.
 Table create sql command：
 CREATE TABLE `cpu` (
   `ServerName` varchar(255) NOT NULL,
