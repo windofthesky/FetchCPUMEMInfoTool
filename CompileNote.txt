@@ -1,20 +1,25 @@
-编译指令：
+Compile Command：
 gcc -o Fetchinfo -L/usr/lib/ -lmysqlclient m_linux.c utils.c Fetchinfo.c
 
-使用方式：
+Usage：
 ./Fetchinfo  ServerName  ip
 demo: ./Fetchinfo TestServer3  192.168.2.223
 
-所需准备：
-1. 从Oracle官网获取mysql-connector-c-6.1.5-linux-glibc2.5-x86_64.tar.gz解压。
-2. 将include下的内容放到/usr/include目录下。
-3. 将lib下的内容放到/usr/lib目录下。
-注：2，3步骤需保持内容目录结构一致！
+Steps：
 
-Fetchinfo.c编译依赖mysql和m_linux,utils,因此需要在编译时指定。
+1.Fetch "mysql-connector-c-6.1.5-linux-glibc2.5-x86_64.tar.gz" from Oracle official site,and un-tar.
+
+2.copy all the files in "include" folder to "/usr/include"
+
+3.copy all the files in "lib" folder to "/usr/lib".
+
+warning:step 2 and 3 should keep all the folder structure as the same way.
 
 
-表创建：
+To compile Fetchinfo.c we needs mysql and m_linux,utils,so it must be noted when in the compile command.
+
+
+Table create sql command：
 CREATE TABLE `cpu` (
   `ServerName` varchar(255) NOT NULL,
   `IP` varchar(30) DEFAULT NULL,
