@@ -25,8 +25,8 @@ int main(int argc,char *argv[])
     {
         mysql_init(&mysql);
         CPU_Usage = ((float)info.cpustates[0]/10) + ((float)info.cpustates[2]/10);
-	    MEM_Usage = info.memory[0]-info.memory[1];
-	    MEM_Total = info.memory[0];
+	MEM_Usage = info.memory[0]-info.memory[1];
+	MEM_Total = info.memory[0];
         
         char cpu_usg[6];
         sprintf(cpu_usg, "%.1f", CPU_Usage);
@@ -36,34 +36,34 @@ int main(int argc,char *argv[])
         sprintf(mem_total, "%d", MEM_Total);
         
         //test code
-	    //printf("cpu usage: %s", cpu_usg);
+	//printf("cpu usage: %s", cpu_usg);
         //printf("mem usage: %s", mem_usg);
         //printf("mem total: %s", mem_total);
         //INSERT INTO cpu(ServerName, ip, CPU_Load, Mem_Used) VALUES('TestServer1', '192.168.2.22', 0.5 , 656896)
         if(mysql_real_connect(&mysql,"192.168.2.7","root","123456","test",0,NULL,0) && strlen(mem_usg)>0 )
         {
-	        char query_insert[150];
+	    char query_insert[150];
             char *query = "INSERT INTO cpu(ServerName, ip, CPU_Load, Mem_Used) VALUES('";
             char *server = argv[1];//"TestServer1";
-			char *ip = argv[2];
+	    char *ip = argv[2];
             char *intev1 = "', '";
-	        char *intev2 = "', ";
-			char *intev3 = " , ";
+	    char *intev2 = "', ";
+	    char *intev3 = " , ";
             char *intev4 = ")";
-		    strcpy(query_insert, query);
-	        strcat(query_insert, server);
-	        strcat(query_insert, intev1);
-			strcat(query_insert, ip);
-			strcat(query_insert, intev2);
-	        strcat(query_insert, cpu_usg);
-	        strcat(query_insert, intev3);
-	        strcat(query_insert, mem_usg);
-	        strcat(query_insert, intev4);
+            strcpy(query_insert, query);
+	    strcat(query_insert, server);
+	    strcat(query_insert, intev1);
+	    strcat(query_insert, ip);
+	    strcat(query_insert, intev2);
+	    strcat(query_insert, cpu_usg);
+	    strcat(query_insert, intev3);
+	    strcat(query_insert, mem_usg);
+	    strcat(query_insert, intev4);
 
-	        //test code
+	    //test code
             //printf("Insert command is : %s \n", query_insert);
             result = mysql_query(&mysql, query_insert);
-	    }
+	}
         sleep(10);	
     }while(1);
     return 0;
