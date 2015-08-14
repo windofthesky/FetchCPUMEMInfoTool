@@ -1,11 +1,4 @@
-Compile Command：
-gcc -o Fetchinfo -L/usr/lib/ -lmysqlclient m_linux.c utils.c Fetchinfo.c
-
-Usage：
-./Fetchinfo  ServerName  ip
-demo: ./Fetchinfo TestServer3  192.168.2.223
-
-Steps：
+Pre-Steps：
 
 1.Fetch "mysql-connector-c-6.1.5-linux-glibc2.5-x86_64.tar.gz" from Oracle official site,and un-tar.
 
@@ -15,8 +8,15 @@ Steps：
 
 warning:step 2 and 3 should keep all the folder structure as the same way.
 
+Compile Command：
+gcc -o Fetchinfo -L/usr/lib/ -lmysqlclient m_linux.c utils.c Fetchinfo.c
 
-To compile Fetchinfo.c we needs mysql and m_linux,utils,so it must be noted when in the compile command.
+PS:To compile Fetchinfo.c we needs mysql and m_linux,utils,so it must be noted when in the compile command.
+
+Usage：
+./Fetchinfo  ServerName  ip
+demo: ./Fetchinfo TestServer3  192.168.2.223
+
 
 To store the cpu & memory information into MySQL datebase,we need a table.
 Table create sql command：
