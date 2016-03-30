@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <mysql.h>
-
 #include "machine.h"
 
 int machine_init(struct statics * statics);
@@ -21,6 +20,7 @@ int main(int argc,char *argv[])
 
     machine_init(&stat);
     get_system_info(&info);
+    
     do
     {
         mysql_init(&mysql);
@@ -39,8 +39,8 @@ int main(int argc,char *argv[])
 	//printf("cpu usage: %s", cpu_usg);
         //printf("mem usage: %s", mem_usg);
         //printf("mem total: %s", mem_total);
-        //INSERT INTO cpu(ServerName, ip, CPU_Load, Mem_Used) VALUES('TestServer1', '192.168.2.22', 0.5 , 656896)
-        if(mysql_real_connect(&mysql,"192.168.2.7","root","123456","test",0,NULL,0) && strlen(mem_usg)>0 )
+        //INSERT INTO cpu(ServerName, ip, CPU_Load, Mem_Used) VALUES('TestServer1', '192.xx.xx.xx', 0.5 , 656896)
+        if(mysql_real_connect(&mysql,"192.168.2.7","root","123456","test",0,NULL,0) && strlen(mem_usg) > 0)
         {
 	    char query_insert[150];
             char *query = "INSERT INTO cpu(ServerName, ip, CPU_Load, Mem_Used) VALUES('";
@@ -62,9 +62,11 @@ int main(int argc,char *argv[])
 
 	    //test code
             //printf("Insert command is : %s \n", query_insert);
+            //insert the collected information into mysql table.
             result = mysql_query(&mysql, query_insert);
 	}
         sleep(10);	
     }while(1);
+    
     return 0;
 }
